@@ -1,45 +1,71 @@
-Handwritten Digit Classifier (TFLite Integration)
-This project is a native Android application that integrates a Machine Learning model to recognize handwritten digits. It demonstrates the complete workflow of training a model in Python and deploying it on an Android device for real-time inference.
+ModelTFLite Android App
+Project Overview
 
-🚀 Project Workflow
-Model Training: A Convolutional Neural Network (CNN) was trained on the MNIST Dataset using Google Colab.
+This Android application allows users to draw digits on the screen and predicts the digit using a TensorFlow Lite (TFLite) model.
+The app uses SignaturePad for drawing input and a pre-trained MNIST-like model for digit recognition.
 
-Format Conversion: The trained model was converted from Keras (.h5) format to TensorFlow Lite (.tflite) for mobile optimization.
+Features
 
-Android Integration: The .tflite model was embedded into the Android assets folder.
+Draw digits (0–9) using touch input.
 
-On-Device Inference: Using the TensorFlow Lite Java library, the app processes input data and generates predictions locally on the device.
+Real-time digit prediction.
 
-🛠️ Tech Stack
-Language: Java (Android), Python (Training)
+Lightweight and fast inference using TFLite.
 
-Frameworks: TensorFlow Lite, Keras/TensorFlow
+Works on Android devices with API 24+.
 
-Tools: Android Studio, Google Colab
+Project Structure
+com.nayab.modeltflite
+├── MainActivity.java         # Main app logic (drawing + prediction)
+├── model.tflite              # Pre-trained TFLite model
+├── layout/
+│   └── activity_main.xml     # UI layout with SignaturePad
+├── build.gradle              # Project dependencies and build config
 
-Dataset: MNIST (Handwritten Digits 0-9)
+Dependencies
 
-📁 Key Files
-app/src/main/assets/model.tflite: The optimized Machine Learning model.
+AndroidX AppCompat, Material, ConstraintLayout
 
-MainActivity.java: Contains the logic for loading the model and handling the inference process.
+TensorFlow Lite: org.tensorflow:tensorflow-lite:2.14.0
 
-activity_main.xml: The user interface featuring a button to trigger model testing.
+TensorFlow Lite Support: org.tensorflow:tensorflow-lite-support:0.4.4
 
-📱 Features
-Offline Processing: No internet is required to run the model once the app is installed.
+Signature Pad: com.github.gcacace:signature-pad:1.3.1
 
-Efficient Performance: Optimized for mobile hardware using the TFLite interpreter.
+Installation
 
-Instant Feedback: Displays "Model Successfully Worked!" upon successful inference.
+Clone the repository.
 
-⚙️ Setup and Installation
-Clone this repository to your local machine.
+Open in Android Studio (Arctic Fox or newer recommended).
 
-Open the project in Android Studio.
+Sync Gradle to download dependencies.
 
-Sync the Gradle files to download necessary TensorFlow Lite dependencies.
+Connect an Android device or start an emulator.
 
-Build and run the app on an Android device (API 24 or higher).
+Run the app.
 
-Click the "Check Model" button to see the model in action!
+Usage
+
+Launch the app.
+
+Draw a digit (0–9) on the canvas.
+
+Press the Predict button.
+
+The predicted digit will appear on the screen.
+
+Notes / Troubleshooting
+
+Ensure the input image is preprocessed to match model input (28x28 grayscale, normalized to 0–1).
+
+If predictions are always “5”, check:
+
+Model is loaded correctly.
+
+Input preprocessing is correct.
+
+Model is properly trained and not biased.
+
+License
+
+This project is licensed under MIT License.
